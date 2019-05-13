@@ -52,7 +52,7 @@ def running_mean(x, N):
 '''
     读取数据
 '''
-file_name = 'test.txt'
+file_name = 'Demodulation_14ms_16MHz.txt'
 now = datetime.datetime.now()
 Data_Ch1, Data_Ch2, Data_Ch3, Data_Ch4, Fs = Read_Data_4Ch(file_name)
 
