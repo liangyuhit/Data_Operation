@@ -24,16 +24,16 @@ def Export_Data(file_name, header, out_str):
 now = datetime.datetime.now()
 scope = Rigol_DS4054.RigolScope('USB0::0x1AB1::0x04B1::DS4A140800046::INSTR')
 print(scope.Read_ID())
-scope.Read()
-Data_Ch1, Data_Ch2, Data_Ch3, Data_Ch4 = scope.Read_Ch1, scope.Read_Ch2, scope.Read_Ch3, scope.Read_Ch4
+
+Data_Ch1, Data_Ch2, Data_Ch3, Data_Ch4, Memory_Depth, Fs = scope.Read()
 # Data_Ch5 = scope.Read_Ch3 - scope.Read_Ch4
 Data = Data_Ch1
-Fs = scope.Sample_Rate # 采样频率
 N_Data, tau0= len(Data), 1.0/Fs  # 采样点数,采样间隔
 T = N_Data*tau0 # 采样时间
 timeline = np.array([x*tau0 for x in range(N_Data)]) #采样序列
+
 print('Sample Rate: %e'%Fs)
-print('Memory Depth: %i'%scope.Memory_Depth)
+print('Memory Depth: %i'%Memory_Depth)
 print('Data Length: %i'%N_Data)
 
 
