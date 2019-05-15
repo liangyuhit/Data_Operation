@@ -52,7 +52,7 @@ def running_mean(x, N):
 '''
     读取数据
 '''
-file_name = 'Demodulation_14ms_16MHz.txt'
+file_name = 'Cavity_Scanning_28ms.txt'
 now = datetime.datetime.now()
 Data_Ch1, Data_Ch2, Data_Ch3, Data_Ch4, Fs = Read_Data_4Ch(file_name)
 
@@ -63,18 +63,28 @@ T = N_Data*tau0
 print('Sampling Rate: %e'%Fs)
 print('Read length: %i'%N_Data)
 
+Data_Ch1 = running_mean(Data_Ch1, 100)[100:]
+Data_Ch2 = running_mean(Data_Ch2, 100)[100:]
+Data_Ch3 = running_mean(Data_Ch3, 100)[100:]
+Data_Ch4 = running_mean(Data_Ch4, 100)[100:]
+
 '''
     可视化
 '''
 if 1:
     plt.figure(1)
         
-    plt.plot(Data_Ch1, color='yellow')
-    plt.plot(Data_Ch2, color='cyan')
-    plt.plot(Data_Ch3, color='magenta')
-    plt.plot(Data_Ch4, color='blue')
-    plt.xlabel('Time [s]')
+    plt.plot(Data_Ch1, label='Reflected Intensity 1', color='yellow')
+    plt.plot(Data_Ch2, label='Reflected Intensity 2', color='cyan')
+#     plt.plot(Data_Ch3, label='Demodulated Error Signal 1', color='magenta')
+#     plt.plot(Data_Ch4*2, label='Demodulated Error Signal 2', color='blue')
+    plt.xlim(2e5, 5e5)
+    plt.ylim(0, 3)
+    plt.xlabel('Cavity Length Scanning')
     plt.ylabel('Voltage [V]')
     plt.grid(which = 'both')
+    plt.legend(loc='center right')
+    plt.get_current_fig_manager().window.setGeometry(20, 50, 1000, 800)
+    plt.gca().tick_params(axis='x',labelbottom=False)
     
     plt.show()
