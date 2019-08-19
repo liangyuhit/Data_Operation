@@ -78,7 +78,7 @@ def running_mean(x, N):
 '''
     读取数据
 '''
-file_name = 'Camera Test.txt'
+file_name = r'C:\Users\yu03\Desktop\Experiment Record\Camera Trigger Test\Flash test\flash test.txt'
 now = datetime.datetime.now()
 Data_Ch1, Data_Ch2, Fs = Read_Data_2Ch(file_name)
 
@@ -89,9 +89,11 @@ T = N_Data*tau0
 print('Sampling Rate: %e'%Fs)
 print('Read length: %i'%N_Data)
 
-Data_Ch1 = running_mean(Data_Ch1, 100)
-Data_Ch2 = running_mean(Data_Ch2, 100)
-
+# Data_Ch1 = running_mean(Data_Ch1, 100)
+# Data_Ch2 = running_mean(Data_Ch2, 100)
+cutting_start = np.where(np.diff(Data_Ch2)>3)[0][1] + 1
+cutting_end = np.where(np.diff(Data_Ch2)>3)[0][-1] + 1
+print(cutting_start, cutting_end)
 
 '''
     可视化
@@ -112,4 +114,7 @@ if 1:
     plt.get_current_fig_manager().window.setGeometry(20, 50, 1000, 800)
     plt.gca().tick_params(axis='x',labelbottom=False)
     
+    plt.figure(2)
+    plt.plot(Data_Ch1[cutting_start:cutting_end], label='Trigger', color='yellow')
+    plt.plot(Data_Ch2[cutting_start:cutting_end], label='Flash', color='cyan')
     plt.show()
