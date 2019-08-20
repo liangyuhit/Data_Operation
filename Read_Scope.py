@@ -40,7 +40,7 @@ print('Data Length: %i'%N_Data)
 ''' 
     输出数据
 '''
-file_name = r'C:\Users\yu03\Desktop\Experiment Record\Camera Trigger Test\Flash test\flash_test_7M.txt'####################################################################################
+file_name = r'C:\Users\yu03\Desktop\Experiment Record\Camera Trigger Test\Flash test\flash_test_7M_2.txt'####################################################################################
 header = ['%s\n' %file_name,
       'Local current time : %s\n' %now.strftime("%Y-%m-%d %H:%M:%S"),
       'Fs = %e (Hz)\n' %Fs,##########################################################################################################
