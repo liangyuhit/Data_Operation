@@ -42,6 +42,10 @@ class RigolScope():
         self.dev.write(':STOP')
         return    
     
+    def Write_Single(self):
+        self.dev.write(':SINGLE')
+        return    
+    
     def Read_WavFormat(self):
         '''
             Queries the return format of the waveform data
