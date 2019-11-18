@@ -42,7 +42,7 @@ print('Data Length: %i'%N_Data)
 ''' 
     输出数据
 '''
-file_name = r'C:\Users\yu03\Desktop\Test 2019.11.18(spacer)\1st_mental_glue\1_Cavity_Test(Mirrors glued on spacer)\16MHz_Demodulation_zoom.txt'####################################################################################
+file_name = r'C:\Users\yu03\Desktop\Test 2019.11.18(spacer)\1st_mental_glue\3_Cavity_Test(Releasing_short_term)\16MHz_Demodulation.txt'####################################################################################
 header = ['%s\n' %file_name,
       'Local current time : %s\n' %now.strftime("%Y-%m-%d %H:%M:%S"),
       'Fs = %e (Hz)\n' %Fs,##########################################################################################################

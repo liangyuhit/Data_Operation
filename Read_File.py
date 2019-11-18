@@ -78,7 +78,7 @@ def running_mean(x, N):
 '''
     读取数据
 '''
-file_name = r'C:\Users\yu03\Desktop\Test 2019.11.18(spacer)\1st_mental_glue\1_Cavity_Test(Mirrors glued on spacer)\16MHz_Demodulation_zoom.txt'
+file_name = r'C:\Users\yu03\Desktop\Test 2019.11.18(spacer)\1st_mental_glue\3_Cavity_Test(Releasing_short_term)\16MHz_Demodulation.txt'
 now = datetime.datetime.now()
 Data_Ch1, Data_Ch2, Data_Ch3, Data_Ch4, Fs = Read_Data_4Ch(file_name)
 
@@ -100,11 +100,11 @@ print('Read length: %i'%N_Data)
 '''
 if 1:
     plt.figure(1)
-        
+    plt.plot(Data_Ch4, label='Wavelength Sweeping', color='blue')
     plt.plot(Data_Ch1, label='Transmitted light', color='yellow')
     plt.plot(Data_Ch2, label='Reflected light', color='cyan')
     plt.plot(Data_Ch3, label='Demodulated Error Signal', color='magenta')
-    plt.plot(Data_Ch4, label='Wavelength Sweeping', color='blue')
+    
 #     plt.xlim(2e5, 5e5)
 #     plt.ylim(0, 3)
 #     plt.xlabel('Cavity Length Scanning')
