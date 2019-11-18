@@ -78,9 +78,9 @@ def running_mean(x, N):
 '''
     读取数据
 '''
-file_name = r'C:\Users\yu03\Desktop\Experiment Record\Camera Trigger Test\Flash test\flash test.txt'
+file_name = r'C:\Users\yu03\Desktop\Test 2019.11.18(spacer)\1st_mental_glue\1_Cavity_Test(Mirrors glued on spacer)\16MHz_Demodulation_zoom.txt'
 now = datetime.datetime.now()
-Data_Ch1, Data_Ch2, Fs = Read_Data_2Ch(file_name)
+Data_Ch1, Data_Ch2, Data_Ch3, Data_Ch4, Fs = Read_Data_4Ch(file_name)
 
 Data = Data_Ch1
 N_Data = len(Data)
@@ -91,9 +91,9 @@ print('Read length: %i'%N_Data)
 
 # Data_Ch1 = running_mean(Data_Ch1, 100)
 # Data_Ch2 = running_mean(Data_Ch2, 100)
-cutting_start = np.where(np.diff(Data_Ch2)>3)[0][1] + 1
-cutting_end = np.where(np.diff(Data_Ch2)>3)[0][-1] + 1
-print(cutting_start, cutting_end)
+# cutting_start = np.where(np.diff(Data_Ch2)>3)[0][1] + 1
+# cutting_end = np.where(np.diff(Data_Ch2)>3)[0][-1] + 1
+# print(cutting_start, cutting_end)
 
 '''
     可视化
@@ -101,20 +101,20 @@ print(cutting_start, cutting_end)
 if 1:
     plt.figure(1)
         
-    plt.plot(Data_Ch1, label='Trigger', color='yellow')
-    plt.plot(Data_Ch2, label='Flash', color='cyan')
-#     plt.plot(Data_Ch3, label='Demodulated Error Signal 1', color='magenta')
-#     plt.plot(Data_Ch4*2, label='Demodulated Error Signal 2', color='blue')
+    plt.plot(Data_Ch1, label='Transmitted light', color='yellow')
+    plt.plot(Data_Ch2, label='Reflected light', color='cyan')
+    plt.plot(Data_Ch3, label='Demodulated Error Signal', color='magenta')
+    plt.plot(Data_Ch4, label='Wavelength Sweeping', color='blue')
 #     plt.xlim(2e5, 5e5)
 #     plt.ylim(0, 3)
 #     plt.xlabel('Cavity Length Scanning')
 #     plt.ylabel('Voltage [V]')
     plt.grid(which = 'both')
-    plt.legend(loc='center right')
+    plt.legend(loc='best')
     plt.get_current_fig_manager().window.setGeometry(20, 50, 1000, 800)
     plt.gca().tick_params(axis='x',labelbottom=False)
     
-    plt.figure(2)
-    plt.plot(Data_Ch1[cutting_start:cutting_end], label='Trigger', color='yellow')
-    plt.plot(Data_Ch2[cutting_start:cutting_end], label='Flash', color='cyan')
+#     plt.figure(2)
+#     plt.plot(Data_Ch1[cutting_start:cutting_end], label='Trigger', color='yellow')
+#     plt.plot(Data_Ch2[cutting_start:cutting_end], label='Flash', color='cyan')
     plt.show()

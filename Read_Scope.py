@@ -28,7 +28,7 @@ print(scope.Read_ID())
 # scope.Write_Single()
  
 print(scope.Read_Memory_Depth())
-Data_Ch1, Data_Ch2, Memory_Depth, Fs = scope.Read()
+Data_Ch1, Data_Ch2, Data_Ch3, Data_Ch4, Memory_Depth, Fs = scope.Read()
 Data = Data_Ch1
 N_Data, tau0= len(Data), 1.0/Fs  # 采样点数,采样间隔
 T = N_Data*tau0 # 采样时间
@@ -42,16 +42,16 @@ print('Data Length: %i'%N_Data)
 ''' 
     输出数据
 '''
-file_name = r'C:\Users\yu03\Desktop\Experiment Record\Camera Trigger Test\Flash test\flash_test.txt'####################################################################################
+file_name = r'C:\Users\yu03\Desktop\Test 2019.11.18(spacer)\1st_mental_glue\1_Cavity_Test(Mirrors glued on spacer)\16MHz_Demodulation_zoom.txt'####################################################################################
 header = ['%s\n' %file_name,
       'Local current time : %s\n' %now.strftime("%Y-%m-%d %H:%M:%S"),
       'Fs = %e (Hz)\n' %Fs,##########################################################################################################
       'Data Length: %i\n' %N_Data,############################################################################################
       'Time Scale = %e (s)\n' %T,############################################################################################
-      'Channel_1: Trigger\n',############################################################################################
-      'Channel_2: Flash\n',############################################################################################
-      'Channel_3: XXX\n',############################################################################################
-      'Channel_4: XXX\n',############################################################################################
+      'Channel_1: Transmitted Light\n',############################################################################################
+      'Channel_2: Reflected Light\n',############################################################################################
+      'Channel_3: Demodulated S_curve\n',############################################################################################
+      'Channel_4: Wavelength Sweeping\n',############################################################################################
 #       'Channel_3: Demodulated S_curve (from CH_No.2)\n',############################################################################################
 #       'Channel_4: Demodulated S_curve (from CH_No.1)\n',############################################################################################
 #       'Data_Ch5: Difference between Channel_3 & Channel_4 (Ch3-Ch4)\n'################################################################################
@@ -59,7 +59,7 @@ header = ['%s\n' %file_name,
       ]
 # out_str = ['%.4f, %.4f, %.4f, %.4f\n' %(Data_Ch1[i], Data_Ch2[i], Data_Ch3[i], Data_Ch4[i]) for i in range(len(Data))] 
 # out_str = [' %.4f, %.4f, %.4f, %.4f, %.4f\n' %(Data_Ch1[i], Data_Ch2[i], Data_Ch3[i], Data_Ch4[i], Data_Ch5[i]) for i in range(len(Data))]    
-out_str = ['%.4f, %.4f\n' %(Data_Ch1[i], Data_Ch2[i]) for i in range(len(Data))]    
+out_str = ['%.4f, %.4f, %.4f, %.4f\n' %(Data_Ch1[i], Data_Ch2[i], Data_Ch3[i], Data_Ch4[i]) for i in range(len(Data))]    
   
 ''' 
     保存文件
@@ -77,8 +77,8 @@ if 1:
     #     plt.plot(timeline, Data, color='blue', marker=' ', fillstyle='full', markeredgecolor='blue', markeredgewidth=0.0)
     plt.plot(Data_Ch1, color='yellow')
     plt.plot(Data_Ch2, color='cyan')
-#     plt.plot(Data_Ch3, color='magenta')
-#     plt.plot(Data_Ch4, color='blue')
+    plt.plot(Data_Ch3, color='magenta')
+    plt.plot(Data_Ch4, color='blue')
     plt.xlabel('Time [s]')
     plt.ylabel('Voltage [V]')
     plt.grid(which = 'both')
